@@ -1,130 +1,60 @@
-body {
-    margin: 0;
-    background: black;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.my-path {
-    fill: black;
-    stroke: white;
-    stroke-width: 1;
-}
-
-.hero {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-text {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.hero svg {
-    display: block;
-    width: min(900px, 100%);
-    height: auto;
-    transform: scale(2);
-}
-
-.tutorial {
-    color: white;
-    border: 1px solid white;
-    margin: 1em;
-    position: absolute;
-    bottom: 0;
-}
-
-.tutorial a {
-    color: lightblue;
-}
-
-nav ul {
-    display: flex;
-    position: absolute;
-    color: white;
-    justify-content: space-around;
-    width: 100%;
-    list-style-type: none;
-}
-
-nav a {
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid white;
-    padding: 1em;
-    border-radius: 0 0 25px 25px;
-    transition: transform 0.3s ease;
-}
-
-nav a:hover {
-    transform: translateY(5px);
-    color: red;
-}
-
+/* style.css */
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 
+/* Base styles: dark background, white text (Bootstrap has utilities too) */
 body {
-    background-color: #222222;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+  background-color: #222;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-h2 {
-    position: absolute;
-    left: 20px;
-    top: 0px;
-    z-index: -1;
+/* Hero section centering */
+.hero {
+  width: 100%;
+  height: 100%;
 }
 
-.center {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+/* Center the SVG hero text */
+.hero-text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+/* SVG styling for the line drawing */
+.my-path {
+  fill: black;
+  stroke: white;
+  stroke-width: 1;
+}
+
+/* Floating draggable menu styles */
 .menu {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 40px;
+  height: 40px;
 }
-
-.title {
-    width: 300px;
-    height: 10px;
-    top: 60px;
-}
-
 .item {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    cursor: pointer;
-    text-align: center;
-    line-height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
 }
-
 i {
-    font-size: 24px;
-    color: #222222;
+  font-size: 24px;
+  color: #222;
 }
 
-;
+/* Projects page overrides (if any) can go here */
