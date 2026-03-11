@@ -1,173 +1,393 @@
 // script.js
-import { createAnimatable, utils } from 'https://esm.sh/animejs';
+// Raul Flores Portfolio Animations
 
-// HERO CURSOR ANIMATION
+
+/*
+Anime.js Documentation
+Citation:
+https://animejs.com/documentation/
+
+Used for:
+- text animations
+- parallax movement
+- svg drawing animations
+- scroll reveal effects
+*/
+
+
+console.log("Portfolio Loaded");
+
+
+/* ================================
+HERO PARALLAX ANIMATION
+================================ */
+
 const hero = document.querySelector('.hero');
 const heroText = document.querySelector('.hero-text');
-let bounds = hero.getBoundingClientRect();
-const refreshBounds = () => (bounds = hero.getBoundingClientRect());
-const maxMove = 5;
-// Create an Animatable instance for the hero text (from Anime.js docs)【25†L454-L463】.
-const animatableHero = createAnimatable(heroText, {
-  x: 500,
-  y: 300,
-  ease: 'out(3)'
-});
 
-// On mouse move, animate heroText x/y relative to center (clamped)【25†L467-L471】.
-const onMouseMove = (e) => {
-  const { width, height, left, top } = bounds;
-  const hw = width / 2, hh = height / 2;
-  // Calculate offset from hero center
-  const dx = e.clientX - left - hw;
-  const dy = e.clientY - top - hh;
-  // Clamp values to keep within bounds
-  const clampedX = utils.clamp(dx, -hw, hw);
-  const clampedY = utils.clamp(dy, -hh, hh);
-  // Scale to a small movement
-  const x = (clampedX / hw) * maxMove;
-  const y = (clampedY / hh) * maxMove;
-  // Animate to new x,y (duration set by default in createAnimatable)【25†L454-L463】
-  animatableHero.x(x + 200);
-  animatableHero.y(y);
-};
-const reset = () => { animatableHero.x(0); animatableHero.y(0); };
-hero.addEventListener('mousemove', onMouseMove);
-hero.addEventListener('mouseleave', reset);
-window.addEventListener('resize', refreshBounds);
-window.addEventListener('scroll', refreshBounds, { passive: true });
+if (hero && heroText) {
 
-// SVG LINE DRAWING ANIMATION
-anime({
-  targets: '#lineDrawing .lines path',
-  strokeDashoffset: [anime.setDashoffset, 0],
-  easing: 'easeInOutSine',
-  duration: 5000,
-  delay: 1000,
-  direction: 'alternate',
-  loop: true
-});
+    let bounds = hero.getBoundingClientRect();
 
-// MENU ITEM AND MENU CLASSES (from jQueryScript plugin)
-// Each Item is a draggable icon circle that passes motion to the next item【9†L96-L105】.
-class Item {
-  constructor(icon, backgroundColor) {
-    this.$element = $(document.createElement("div"));
-    this.$element.addClass("item");
-    if (backgroundColor) this.$element.css("background-color", backgroundColor);
-    const iTag = document.createElement("i");
-    $(iTag).addClass("fi-" + icon);
-    this.$element.append(iTag);
-    this.prev = null;
-    this.next = null;
-    this.isMoving = false;
-    // When this item moves, schedule the next item to catch up【9†L108-L116】.
-    this.$element.on("mousemove", () => {
-      clearTimeout(timeOut);
-      timeOut = setTimeout(() => {
-        if (this.next && this.isMoving) this.next.moveTo(this);
-      }, 10);
+    const refreshBounds = () => bounds = hero.getBoundingClientRect();
+
+    const maxMove = 8;
+
+    /*
+    createAnimatable()
+    Citation:
+    https://animejs.com/documentation/animatables/
+    */
+
+    const animatableHero = anime({
+        targets: heroText,
+        translateX: 0,
+        translateY: 0,
+        duration: 400,
+        easing: "easeOutQuad",
+        autoplay: false
     });
-  }
-  // Move this item to the position of another item (anime.js for smooth motion)【9†L119-L127】.
-  moveTo(item) {
-    anime({
-      targets: this.$element[0],
-      left: item.$element.css("left"),
-      top: item.$element.css("top"),
-      duration: 700,
-      elasticity: 500
+
+    hero.addEventListener("mousemove", (e) => {
+
+        const { width, height, left, top } = bounds;
+
+        const hw = width / 2;
+        const hh = height / 2;
+
+        const dx = e.clientX - left - hw;
+        const dy = e.clientY - top - hh;
+
+        const x = (dx / hw) * maxMove;
+        const y = (dy / hh) * maxMove;
+
+        anime({
+            targets: heroText,
+            translateX: x,
+            translateY: y,
+            duration: 400,
+            easing: "easeOutQuad"
+        });
+
     });
-    if (this.next) this.next.moveTo(item);
-  }
-  updatePosition() {
-    anime({
-      targets: this.$element[0],
-      left: this.prev.$element.css("left"),
-      top: this.prev.$element.css("top"),
-      duration: 80
-    });
-    if (this.next) this.next.updatePosition();
-  }
+
+    hero.addEventListener("mouseleave", () => {
+
+        anime({
+            targets: heroText,
+            translateX: 0,
+            translateY: 0,
+            duration: 500
+        })
+
+    })
+
+    window.addEventListener("resize", refreshBounds)
+
 }
 
-class Menu {
-  constructor(menu) {
-    this.$element = $(menu);
-    this.first = null; this.last = null;
-    this.status = "closed";
-  }
-  add(item) {
-    if (!this.first) {
-      this.first = this.last = item;
-      // Clicking the first item toggles the menu (vs dragging)【9†L146-L155】.
-      this.first.$element.on("mouseup", () => {
-        if (this.first.isMoving) {
-          this.first.isMoving = false;
-        } else {
-          this.click();
+
+/* ================================
+SVG LINE DRAWING
+================================ */
+
+/*
+Line drawing technique
+Citation:
+https://animejs.com/documentation/#strokedashoffset
+*/
+
+if (document.querySelector("#lineDrawing")) {
+
+    anime({
+        targets: '#lineDrawing .lines path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 5000,
+        delay: 500,
+        direction: 'alternate',
+        loop: true
+    })
+
+}
+
+
+/* ================================
+LETTER BY LETTER TITLE ANIMATION
+================================ */
+
+/*
+Letter splitting technique
+Citation:
+https://animejs.com/documentation/#timeline
+*/
+
+const textWrapper = document.querySelector('.letters');
+
+if (textWrapper) {
+
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({ loop: false })
+
+        .add({
+
+            targets: '.letter',
+
+            translateY: [80, 0],
+            opacity: [0, 1],
+
+            easing: "easeOutExpo",
+
+            duration: 1500,
+
+            delay: (el, i) => 40 * i
+
+        })
+
+}
+
+
+/* ================================
+PROJECT CARD HOVER ANIMATION
+================================ */
+
+/*
+Hover transform technique
+Citation:
+https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+*/
+
+const cards = document.querySelectorAll(".project-card");
+
+cards.forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        anime({
+            targets: card,
+            scale: 1.05,
+            translateY: -10,
+            duration: 300,
+            easing: "easeOutQuad"
+        })
+
+    })
+
+    card.addEventListener("mouseleave", () => {
+
+        anime({
+            targets: card,
+            scale: 1,
+            translateY: 0,
+            duration: 300,
+            easing: "easeOutQuad"
+        })
+
+    })
+
+});
+
+
+/* ================================
+SCROLL REVEAL ANIMATION
+================================ */
+
+/*
+IntersectionObserver API
+Citation:
+https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+*/
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            anime({
+                targets: entry.target,
+                translateY: [40, 0],
+                opacity: [0, 1],
+                duration: 800,
+                easing: "easeOutExpo"
+            })
+
         }
-      });
-      // Make the first item draggable (jQuery UI)【23†L147-L151】.
-      item.$element.draggable({
-        start: () => { this.close(); item.isMoving = true; },
-        drag: () => { if (item.next) item.next.updatePosition(); },
-        stop: () => { item.isMoving = false; if (item.next) item.next.moveTo(item); }
-      });
-    } else {
-      this.last.next = item;
-      item.prev = this.last;
-      this.last = item;
+
+    })
+
+})
+
+document.querySelectorAll(".project-card").forEach(card => {
+    card.style.opacity = 0;
+    observer.observe(card)
+})
+
+
+/* ================================
+FLOATING PARTICLE BACKGROUND
+================================ */
+
+/*
+Particle animation idea
+Inspired by modern developer portfolios
+Citation:
+https://animejs.com/documentation/#animation
+*/
+
+const particleContainer = document.getElementById("particles");
+
+if (particleContainer) {
+
+    for (let i = 0; i < 30; i++) {
+
+        const dot = document.createElement("div");
+
+        dot.style.width = "6px";
+        dot.style.height = "6px";
+        dot.style.background = "cyan";
+        dot.style.borderRadius = "50%";
+        dot.style.position = "absolute";
+
+        dot.style.top = Math.random() * 100 + "%";
+        dot.style.left = Math.random() * 100 + "%";
+
+        particleContainer.appendChild(dot);
+
+        anime({
+
+            targets: dot,
+
+            translateY: [
+                { value: -120, duration: 4000 },
+                { value: 0, duration: 4000 }
+            ],
+
+            opacity: [
+                { value: 0.2 },
+                { value: 1 },
+                { value: 0.2 }
+            ],
+
+            loop: true,
+            direction: "alternate",
+            easing: "easeInOutSine",
+            delay: Math.random() * 2000
+
+        })
+
     }
-    this.$element.after(item.$element);
-  }
-  open() {
-    this.status = "open";
-    let current = this.first.next, i = 1;
-    const head = this.first;
-    const baseLeft = parseInt(head.$element.css("left"), 10);
-    const baseTop = head.$element.css("top");
-    // Spread items horizontally by 50px increments【10†L199-L208】.
-    while (current) {
-      anime({
-        targets: current.$element[0],
-        left: baseLeft + (i * 50),
-        top: baseTop,
-        duration: 500
-      });
-      i++; current = current.next;
+
+}
+/*
+Anime.js Stagger Animation
+Citation:
+https://animejs.com/documentation/#stagger
+*/
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const eggBtn = document.getElementById("eggButton");
+    const eggPopup = document.getElementById("eggPopup");
+
+    if (eggBtn) {
+
+        eggBtn.addEventListener("click", function () {
+
+            anime({
+                targets: "#eggPopup",
+                bottom: 120,
+                duration: 800,
+                easing: "easeOutExpo"
+            });
+
+        });
+
     }
-  }
-  close() {
-    this.status = "closed";
-    let current = this.first.next, head = this.first;
-    // Collapse items back to the head position【10†L219-L227】.
-    while (current) {
-      anime({
-        targets: current.$element[0],
-        left: head.$element.css("left"),
-        top: head.$element.css("top"),
-        duration: 500
-      });
-      current = current.next;
-    }
-  }
-  click() { (this.status == "closed" ? this.open() : this.close()); }
+
+});
+
+/*
+Anime.js Glow Pulse
+Citation:
+https://animejs.com/documentation/#animation
+*/
+
+if (document.querySelector(".contact-glow")) {
+
+    anime({
+
+        targets: ".contact-glow",
+
+        boxShadow: [
+            "0 0 15px rgba(0,255,255,0.2)",
+            "0 0 40px rgba(0,255,255,0.6)"
+        ],
+
+        direction: "alternate",
+
+        loop: true,
+
+        easing: "easeInOutSine",
+
+        duration: 2000
+
+    })
+
+}
+/*
+Easter Egg Popup Animation
+Uses Anime.js to slide message up from bottom woah cool right!!!! btw this is a secret message for anyone who finds it, so shhhhhh hi r
+*/
+
+const egg = document.getElementById("easterEgg");
+
+if (egg) {
+
+    setTimeout(() => {
+
+        anime({
+
+            targets: "#easterEgg",
+
+            bottom: 20,
+
+            duration: 1000,
+
+            easing: "easeOutExpo"
+
+        })
+
+    }, 4000);
+
 }
 
-let timeOut;
-const menu = new Menu("#myMenu");
-const item1 = new Item("list");     // Using Foundation icons (fi-list)
-const item2 = new Item("torso", "#FF5C5C");
-const item3 = new Item("social-facebook", "#5CD1FF");
-const item4 = new Item("paypal", "#FFF15C");
-const item5 = new Item("link", "#64F592");
-menu.add(item1);
-menu.add(item2);
-menu.add(item3);
-menu.add(item4);
-menu.add(item5);
-// Auto-open then close the menu for demo effect
-$(document).delay(50).queue((next) => { menu.open(); next();
-  $(document).delay(1000).queue((next) => { menu.close(); next(); });
-});
+/*
+Anime.js popup animation
+Citation:
+https://animejs.com/documentation/#animation
+*/
+
+const eggBtn = document.getElementById("eggButton");
+const eggPopup = document.getElementById("eggPopup");
+
+if (eggBtn) {
+
+    eggBtn.addEventListener("click", () => {
+
+        anime({
+
+            targets: "#eggPopup",
+
+            bottom: 120,
+
+            duration: 800,
+
+            easing: "easeOutExpo"
+
+        });
+
+    });
+
+}
