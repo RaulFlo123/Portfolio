@@ -1,60 +1,121 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Responsive meta tag (Bootstrap)【29†L213-L222】 -->
-  <title>My Portfolio</title>
-  <!-- Bootstrap CSS (from CDN) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Raul Flores Portfolio</title>
+
+    <!--
+Citation:
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Used for responsive layout and card grids.
+-->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!--
+Citation:
+https://fonts.google.com/specimen/Orbitron-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body class="bg-dark text-white">
-  <!-- Bootstrap navbar (responsive) -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">My Portfolio</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero section: centered animation -->
-  <div class="hero container d-flex flex-column justify-content-center align-items-center" style="height:100vh; padding-top:4rem;">
-    <div class="hero-text" id="lineDrawing">
-      <svg viewBox="0 0 1000 100" preserveAspectRatio="xMidYMid meet" data-asc="0.9">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 12.55 405.25 56.10"
-             data-asc="1.084" width="405.25" height="56.10">
-          <!-- (SVG path content omitted for brevity) -->
-          <g class="lines" fill="#000000">
-            <g transform="translate(0, 0)">
-              <path class="my-path" d="M32.60 26.65Q32.60 29.05 ... 394.05 40.20Z" />
-            </g>
-          </g>
-        </svg>
-      </svg>
-    </div>
-  </div>
+<body>
 
-  <!-- Floating draggable menu  -->
-  <div id="myMenu" class="menu"></div>
 
-  <!-- Bootstrap JS, jQuery, jQuery UI, Anime.js scripts  -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script><!-- jQuery UI for draggable【23†L147-L151】 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script><!-- Bootstrap JS (includes Popper)【29†L213-L222】 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script><!-- Anime.js for animations -->
-  <script src="script.js" type="module"></script>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+
+        <div class="container">
+
+            <a class="navbar-brand">Raul Flores</a>
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html">Contact</a></li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1 class="hero-title">
+
+                <span class="letters">RAUL'S PORTFOLIO</span>
+
+            </h1>
+
+            <p class="subtitle">
+
+                Web Developer • Designer • Student
+
+            </p>
+
+        </div>
+        <div id="particles"></div>
+
+    </section>
+
+
+
+    <!--
+jQuery Library
+Citation:
+https://jquery.com/
+
+Used for simple DOM interactions.
+-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <!--
+Anime.js Animation Library
+Citation:
+https://animejs.com/documentation/
+
+Used for text animations and movement effects.
+-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+
+    <script src="script.js"></script>
+
+<button id="eggButton">
+🐣 Secret
+</button>
+
+
+<div id="eggPopup">
+
+<h3>🎉 Easter Egg Found!</h3>
+
+<p>
+Nice job exploring my portfolio.  
+Built by Raul Flores using HTML, CSS, JavaScript, Bootstrap, and Anime.js and etc idk lmao
+</p>
+
+</div>
 </body>
+
 </html>
