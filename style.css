@@ -270,17 +270,17 @@ body {
 
     transform: translateX(-50%);
 
-    background: #111;
+    background: black;
 
-    color: cyan;
+    color: black;
 
     padding: 15px 25px;
 
     border-radius: 20px;
 
-    border: 1px solid cyan;
+    border: 1px solid black;
 
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(black);
 
     transition: 0.5s;
 
@@ -296,7 +296,7 @@ body {
 
     right: 20px;
 
-    background: cyan;
+    background: black;
 
     border: none;
 
@@ -308,7 +308,7 @@ body {
 
     font-weight: bold;
 
-    box-shadow: 0 0 20px cyan;
+    box-shadow: 0 0 20px black;
 
     transition: 0.3s;
 
@@ -319,7 +319,7 @@ body {
 
     transform: scale(1.1);
 
-    box-shadow: 0 0 30px cyan;
+    box-shadow: 0 0 30px black;
 
 }
 
@@ -343,9 +343,9 @@ body {
 
     border-radius: 15px;
 
-    border: 1px solid cyan;
+    border: 1px solid black;
 
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 30px rgba(black;
 
     text-align: center;
 
