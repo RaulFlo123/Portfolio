@@ -51,16 +51,14 @@
 
 
 <section class="page-section">
+<div id="particles"></div>
 
-<div class="container text-center">
+<div class="container text-center" style="position: relative; z-index: 1;">
 
-
-
-
-<div class="content-box">
+<div class="content-box contact-glow scroll-reveal">
 
 <h1 class="page-title">Contact</h1>
-If you would like to connect or learn more about my work, feel free to reach out!!! i guess....
+<p class="page-text mb-4">If you would like to connect or learn more about my work, feel free to reach out!</p>
 <p class="contact-item">
 Email: <a href="mailto:raulf@seoscholars.org">raulf@seoscholars.org</a>
 </p>
@@ -73,12 +71,30 @@ GitHub: <a href="https://github.com/raulflo" target="_blank">github.com/raulflo<
 LinkedIn: <a href="https://linkedin.com/in/raulflores" target="_blank">linkedin.com/in/raulflores</a>
 </p>
 
+<div class="contact-form scroll-reveal">
+    <h3 class="text-info mb-3">Send a Message</h3>
+    <form action="#" method="POST">
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-submit">Send Message</button>
+    </form>
 </div>
 
 </div>
+
 </div>
 
 </section>
 
+<!-- Anime.js for Particles -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

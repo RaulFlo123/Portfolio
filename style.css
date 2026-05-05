@@ -280,7 +280,7 @@ body {
 
     border: 1px solid black;
 
-    box-shadow: 0 0 20px rgba(black);
+    box-shadow: 0 0 20px black;
 
     transition: 0.5s;
 
@@ -345,10 +345,161 @@ body {
 
     border: 1px solid black;
 
-    box-shadow: 0 0 30px rgba(black;
+    box-shadow: 0 0 30px black;
 
     text-align: center;
 
     width: 300px;
 
+}
+
+/* ================================
+   3D CANVAS BACKGROUND
+   ================================ */
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Let clicks pass through */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* Keep content above canvas */
+}
+
+/* ================================
+   SCROLL REVEAL UTILITY
+   ================================ */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* ================================
+   SKILLS & EDUCATION (ABOUT PAGE)
+   ================================ */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.skill-badge {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid cyan;
+    color: cyan;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.skill-badge:hover {
+    background: cyan;
+    color: black;
+    box-shadow: 0 0 15px cyan;
+    transform: translateY(-3px);
+}
+
+.timeline {
+    text-align: left;
+    margin-top: 30px;
+    border-left: 2px solid cyan;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: cyan;
+    border-radius: 50%;
+    box-shadow: 0 0 10px cyan;
+}
+
+.timeline-title {
+    color: cyan;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* ================================
+   CONTACT FORM
+   ================================ */
+.contact-form {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    margin-bottom: 15px;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: cyan;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.btn-submit {
+    background: transparent;
+    color: cyan;
+    border: 2px solid cyan;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: cyan;
+    color: black;
+    box-shadow: 0 0 20px cyan;
+}
+
+/* ================================
+   PROJECT BUTTONS
+   ================================ */
+.project-links {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-project {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid cyan;
+    color: cyan;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-project:hover {
+    background: cyan;
+    color: black;
+    box-shadow: 0 0 10px cyan;
 }

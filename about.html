@@ -54,11 +54,11 @@ https://getbootstrap.com/docs/5.3/getting-started/introduction/
 
 
     <section class="page-section">
+        <div id="particles"></div>
+        <div class="container text-center" style="position: relative; z-index: 1;">
 
-        <div class="container text-center">
-
-            <h1 class="page-title">About Me</h1>
-            <div class="content-box">
+            <h1 class="page-title scroll-reveal">About Me</h1>
+            <div class="content-box scroll-reveal">
 
             <p class="page-text">
 
@@ -76,12 +76,38 @@ https://getbootstrap.com/docs/5.3/getting-started/introduction/
 
             </p>
 
+            <h3 class="mt-5 text-info scroll-reveal">Skills</h3>
+            <div class="skills-grid scroll-reveal">
+                <div class="skill-badge">HTML5</div>
+                <div class="skill-badge">CSS3</div>
+                <div class="skill-badge">JavaScript</div>
+                <div class="skill-badge">Bootstrap</div>
+                <div class="skill-badge">Anime.js</div>
+                <div class="skill-badge">Web Design</div>
+                <div class="skill-badge">UI/UX</div>
+            </div>
+
+            <h3 class="mt-5 text-info scroll-reveal">Education</h3>
+            <div class="timeline scroll-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-title">High School Diploma</div>
+                    <p class="text-white-50">Currently Enrolled • Focusing on STEM and Technology</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">SEO Scholars</div>
+                    <p class="text-white-50">Participant • College preparation and academic enrichment program</p>
+                </div>
+            </div>
+
         </div>
 
 </div>
 
     </section>
 
+    <!-- Anime.js for Particles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

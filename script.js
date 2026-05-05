@@ -219,9 +219,9 @@ const observer = new IntersectionObserver((entries) => {
 
 })
 
-document.querySelectorAll(".project-card").forEach(card => {
-    card.style.opacity = 0;
-    observer.observe(card)
+document.querySelectorAll(".project-card, .scroll-reveal").forEach(el => {
+    el.style.opacity = 0;
+    observer.observe(el);
 })
 
 
@@ -390,4 +390,38 @@ if (eggBtn) {
 
     });
 
+}
+
+/* ================================
+THREE.JS 3D BACKGROUND
+================================ */
+const canvas = document.getElementById('bg-canvas');
+if (canvas && typeof THREE !== 'undefined') {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    
+    const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true, transparent: true, opacity: 0.15 });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
+    
+    camera.position.z = 30;
+    
+    function animate3D() {
+        requestAnimationFrame(animate3D);
+        torusKnot.rotation.x += 0.005;
+        torusKnot.rotation.y += 0.005;
+        renderer.render(scene, camera);
+    }
+    animate3D();
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 }
